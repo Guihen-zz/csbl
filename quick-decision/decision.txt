@@ -1,0 +1,13 @@
+Virus?
+{
+  Virus de DNA?
+  {
+    Bacteriófago?   
+  }
+  {
+    Desenvolve síndrome de imunodeficiência?
+  }
+}
+{
+  Bactéria?
+}

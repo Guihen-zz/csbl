@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Quick Decision</title>
+
+  <link href="../style.css" rel="stylesheet" />
+  <script src="../jquery-1.11.1.js"></script>
+
+  <link href="quickdecision.css" rel="stylesheet" />
+  <script src="quickdecision.js"></script>
+</head>
+
+<body>
+  <div id="pagina">
+    <div id="cabecalho">Computational System Biology Laboratory</div>
+
+    <div id="conteudo">
+      <p id="ask" class="qd"></p>
+      <div id="controller">
+        <button id="no">No</button>
+        <button id="yes">Yes</button><br />
+        <button id="dk">Don't Know</button>      
+      </div>
+      <p id="info" class="qd">Use the left and right arrows to answer.</p>
+    </div>
+
+    <div id="rodape">
+      <p class="rodape">
+        <b>CSBL [Computational Systems Biology Laboratory]</b><br />
+        Universidade de São Paulo, Av Prof. Lineu Prestes, 580, Bloco17, Laboratório 16
+      </p>
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+    $(function () {
+      readDecisionFile();
+
+      document.onkeydown = keyPressed;
+    });
+  </script>
+</body>
+
+</html>
