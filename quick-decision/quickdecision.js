@@ -1,77 +1,107 @@
-var askTree = new Object();
-var key;
+var annotationSet;
+var annotationHash;
 
 function readDecisionFile()
 {
   $.get('decision.txt', function(data) {
 
-    var lines = data.split( "\n");
-    var way;
-    for( var i = 0; i < lines.length; i++)
+    prepareAnnotators( data.split( "\n"));
+  }, 'text').done(function() { prepareButtons(); });
+}
+
+function newAnnotation( name)
+{
+  annotationHash.push( name);
+  return annotationHash.length - 1;
+}
+
+function prepareAnnotators( text)
+{
+  annotationSet = new Array();
+  annotationHash = new Array();
+  generateAnnotators( annotationSet, text, 0);
+}
+
+function generateAnnotators( aSet, text, lineIndex)
+{
+  for( var j = lineIndex; j < text.length; j++)
+  {
+    if( text[j].match( /\s*{\s*/)) /* New subcategory */
     {
-      if( lines[i].match( /\s*}\s*/))
-      {
-        way = 'left';
-        while ( i < lines.length && lines[i].match( /\s*}\s*/))
-        {
-          askTree = askTree.parent;
-          i++;
-        }
-        if( i == lines.length) break;
-        if( lines[i].match(/\s*{\s*/)) i++;
-      }
-      else if( lines[i].match(/\s*{\s*/))
-      {
-        way = 'right';
-        i++;
-      }
-
-      var result = lines[i].match(/\s*(.*\?)\s*/);
-      if( result != null)
-      {
-        if( i == 0)
-        {
-          askTree.ask = result[1];
-        }
-        else
-        {
-          askChild =  new Object();
-          askChild.ask = result[1];
-          askChild.parent = askTree;
-          askTree[way] = askChild;
-          askTree = askChild;
-        }
-      }
+      var obj = aSet.pop();
+      j = generateAnnotators( obj.children, text, j + 1);
+      aSet.push( obj);
     }
-  }, 'text').done(function() { startAsk(); });
-}
-
-function startAsk()
-{
-  if( askTree == null)
-    $("#ask").html("Fim da árvore de perguntas.");
-  else
-    $("#ask").html(askTree.ask);
-}
-
-function keyPressed( event)
-{
-  getAnswer( event.keyCode);
-}
-
-function getAnswer( key)
-{
-  // < := 37
-  // > := 39
-  // space := 32
-  if( key == 37)
-  {
-    askTree = askTree.left;
-    startAsk();
+    else if( text[j].match( /\s*}\s*/))
+    {
+      j++;
+      break;
+    }
+    else if( text[j].match( /\s*\S+\s*/))
+    {
+      var item = new Object();
+      item.text = text[j];
+      item.hash = newAnnotation( item.text);
+      item.children = new Array();
+      aSet.push( item);
+    }
   }
-  else if (key == 39)
+  return j;
+}
+
+function prepareButtons()
+{
+  generateButtons( annotationSet, "#annotators");
+}
+
+function generateButtons( aSet, div)
+{
+  for( var i = 0; i < aSet.length; i++)
   {
-    askTree = askTree.right;
-    startAsk(); 
+    var obj = aSet[i];
+    var button = '<a class="button" id="' + obj.hash + 
+                  '" onclick="mark(' + obj.hash + ')">' + obj.text + '</a>';
+
+    $( "#hidden").append('<input type="hidden" id="hidden-' + obj.hash + '" />');
+    if( obj.children.length > 0) /* have child */
+    {
+      $( div).append( '<div id="children-' + obj.hash + '" class="child"></div>');
+      generateButtons( obj.children, "#children-" + obj.hash);
+    }
+
+    $( div).append( button);
+  }
+}
+
+function mark( id)
+{
+  if( $("#children-" + id).length)
+  {
+    hideChildren();
+    $("#children-" + id).show();
+  }
+
+  markMe( id);
+}
+
+function hideChildren()
+{
+  $(".child").each(function(){
+    $(this).hide();
+  });
+}
+
+function markMe( id)
+{
+  var hidden = $("#hidden-" + id);
+  if( hidden.val() == 1)
+  {
+    $("#" + id).css({"background-color": "#ECECEC"});
+    hidden.val(0);
+  }
+  else
+  {
+    $("#" + id).css({"background-color": "#66CDAA"});
+    hidden.val(1);
   }
 }

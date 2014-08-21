@@ -10,6 +10,7 @@
   <script src="../jquery-1.11.1.js"></script>
 
   <link href="quickdecision.css" rel="stylesheet" />
+  <link href="button.css" rel="stylesheet" />
   <script src="quickdecision.js"></script>
 </head>
 
@@ -18,14 +19,10 @@
     <div id="cabecalho">Computational System Biology Laboratory</div>
 
     <div id="conteudo">
-      <p id="ask" class="qd"></p>
-      <div id="controller">
-        <button id="no">No</button>
-        <button id="yes">Yes</button><br />
-        <button id="dk">Don't Know</button>      
-      </div>
-      <p id="info" class="qd">Use the left and right arrows to answer.</p>
+      <div id="annotators"></div>
     </div>
+
+    <div id="hidden"></div>
 
     <div id="rodape">
       <p class="rodape">
@@ -38,8 +35,6 @@
   <script type="text/javascript">
     $(function () {
       readDecisionFile();
-
-      document.onkeydown = keyPressed;
     });
   </script>
 </body>

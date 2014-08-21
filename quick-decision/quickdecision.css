@@ -12,23 +12,6 @@ button {
   font-size: 1.2em;
 }
 
-#yes {
-  background-color: #009966;
-  float: right;
-}
-
-#no {
-  background-color: #980000;
-  float: left;
-}
-
-#dk {
-  margin-top: 12px;
-  background-color: #6699FF; 
-  width: 100%;
-  height: 30px;
-}
-
 p.qd {
   margin: 0 auto;
   font-size: 1.2em;
@@ -38,6 +21,25 @@ p.qd {
   color: #31708F;
   margin-bottom: 22px;
   text-align: center;
+}
+
+div#annotators
+{
+  float: left;
+  width: 640px;
+}
+
+div.child
+{
+  display: none;
+  width: 440px;
+  float: right;
+}
+
+div.child > a
+{
+  display: inline-block;
+  margin: 12px;
 }
 
 #ask {

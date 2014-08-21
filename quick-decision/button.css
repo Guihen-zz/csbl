@@ -1,0 +1,23 @@
+  a.button{
+    background: #ECECEC;
+    border-radius: 15px;
+    padding: 10px 20px;
+    display: block;
+    font-family: arial;
+    font-weight: bold;
+    color:#7f7f7f;
+    text-decoration: none;
+    border:1px solid #a7a7a7;
+    width: 145px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  a.button i{
+    float: right;
+    margin-top: 2px;
+  }
+
+  a.button:hover{
+    box-shadow: 0px 2px 1px white inset, 0px -2px 20px white, 0px 2px 5px rgba(0, 0, 0, 0.1), 0px 8px 10px rgba(0, 0, 0, 0.1);
+  }
