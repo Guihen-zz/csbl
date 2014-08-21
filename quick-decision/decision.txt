@@ -1,13 +1,86 @@
-Virus?
+Cancer
 {
-  Virus de DNA?
-  {
-    Bacteriófago?   
-  }
-  {
-    Desenvolve síndrome de imunodeficiência?
-  }
+  Nervous system or brain-related
+
+  Leukemia or Lymphoma
+
+  Lung
+
+  Breast
+
+  Ovarian
+
+  Prostate
+
+  Renal (Kidney)
+
+  Colon-, Intestine- or Gut-related
+
+  Pancreas
+
+  Skin or Melanoma
+
+  Other 
 }
+
+Disease
 {
-  Bactéria?
+  Parkison or Alzheimer
+
+  Diabetes
+
+  Respiratory (not Asthma)
+
+  Arthritis
+
+  Multiple Sclerosis
+
+  Asthma
+
+  Gastrointestinal (Bowel, Colitis, Crowns)
+
+  Cardiovascular
+
+  Nervous system or brain-related
+
+  Kidney or renal-related
+
+  Genetic syndrome (Down, Turner, etc)
+
+  Other autoimmune disorders (Lupus)
+
+  Other metabolic disease
+
+  Other 
+}
+
+Infection
+{
+  HIV or SIV
+
+  Malaria
+
+  Influenza
+
+  Dengue
+
+  Hepatitis
+
+  Tuberculosis
+
+  Meningococcus
+
+  S. aureus
+
+  Pneumococcus
+
+  CMV
+
+  Other virus
+
+  Fungus
+
+  Protozoa (T. cruzi, Leishmania, amoeba, etc)
+
+  Other 
 }
